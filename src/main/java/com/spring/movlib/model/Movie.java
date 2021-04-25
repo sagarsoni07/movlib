@@ -2,15 +2,14 @@ package com.spring.movlib.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -22,10 +21,10 @@ public class Movie {
 	private String name;
 	private String director;
 	private String releaseYear;
-	@ElementCollection(targetClass = Category.class)
-	  @CollectionTable(name = "movie_category")
-	  @Enumerated(EnumType.STRING)
-	  @Column(name = "category_name")
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "movie", orphanRemoval = true)
+	@CollectionTable(name = "movie_category")
+	@Column(name = "category_name")
 	private Set<Category> categories;
 	private String description;
 
@@ -90,5 +89,4 @@ public class Movie {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
 }
