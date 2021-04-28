@@ -1,13 +1,23 @@
 package com.spring.movlib.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Category {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int categoryid;
 	private CategoryName categoryName;
-	@ManyToOne
+	
+	@JsonBackReference
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Movie movie;
 	
 	public Category() {

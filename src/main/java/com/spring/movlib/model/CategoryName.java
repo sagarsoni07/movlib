@@ -5,5 +5,6 @@ public enum CategoryName {
 	COMEDY,
 	CRIME,
 	DRAMA,
-	THRILLER
+	THRILLER,
+	SCI_FI
 }

@@ -3,7 +3,6 @@ package com.spring.movlib.model;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Movie {
@@ -22,8 +23,8 @@ public class Movie {
 	private String director;
 	private String releaseYear;
 	
+	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "movie", orphanRemoval = true)
-	@CollectionTable(name = "movie_category")
 	@Column(name = "category_name")
 	private Set<Category> categories;
 	private String description;

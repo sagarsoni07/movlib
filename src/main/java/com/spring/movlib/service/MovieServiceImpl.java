@@ -2,7 +2,6 @@ package com.spring.movlib.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -61,12 +60,6 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public List<Movie> findAllMovies() {
 		return (List<Movie>) movieRepository.findAll();
-	}
-
-	@Override
-	public Iterable<Movie> findMoviesByCategory(String categoryName) {
-		Iterable<Integer> movieIds = movieRepository.getMoviesByCategory(categoryName);
-		return movieRepository.findAllById(movieIds);
 	}
 
 }

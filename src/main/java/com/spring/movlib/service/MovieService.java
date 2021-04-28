@@ -19,6 +19,5 @@ public interface MovieService {
 	List<Movie> findMoviesByName(String name);
 	List<Movie> findMoviesByDirector(String name);
 	List<Movie> findAllMovies();
-	Iterable<Movie> findMoviesByCategory(String categoryName);
 	
 }

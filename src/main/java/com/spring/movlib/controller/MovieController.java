@@ -22,17 +22,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.movlib.model.CategoryName;
 import com.spring.movlib.model.Movie;
+import com.spring.movlib.service.CategoryService;
 import com.spring.movlib.service.MovieService;
 
 @RestController
 public class MovieController {
 
 	private MovieService movieService;
+	private CategoryService categoryService;
 
 	@Autowired
-	public MovieController(MovieService movieService) {
+	public MovieController(MovieService movieService, CategoryService categoryService) {
 		this.movieService = movieService;
+		this.categoryService = categoryService;
 	}
 
 	@PostMapping("/movie")
@@ -47,8 +51,8 @@ public class MovieController {
 	}
 	
 	@GetMapping("/category/{categoryName}")
-	Iterable<Movie> listMoviesByCategory(@PathVariable String categoryName) {
-		return movieService.findMoviesByCategory(categoryName);
+	Iterable<Movie> listMoviesByCategory(@PathVariable CategoryName categoryName) {
+		return categoryService.findMoviesByCategory(categoryName);
 	}
 
 	@PutMapping("/movie")
