@@ -32,9 +32,16 @@ public class Movie {
 	public Movie() {
 	}
 
+	public Movie(@NotBlank String name, String director, String releaseYear, Set<Category> categories,
+			String description) {
+		this.name = name;
+		this.director = director;
+		this.releaseYear = releaseYear;
+		this.categories = categories;
+		this.description = description;
+	}
 	public Movie(int id, @NotBlank String name, String director, String releaseYear, Set<Category> categories,
 			String description) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.director = director;
@@ -42,7 +49,7 @@ public class Movie {
 		this.categories = categories;
 		this.description = description;
 	}
-
+	
 	public int getId() {
 		return id;
 	}
